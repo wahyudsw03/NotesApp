@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NotesApp</string>
+    <string name="notes">Notes</string>
+    <string name="logo">Logo</string>
+    <string name="notesEmpty">It’s still empty :( Let’s start adding notes by clicking the dates below !</string>
+    <string name="open_nav">Open Nav</string>
+    <string name="close_nav">Close Nav</string>
+    <string name="notes_title">Notes Title</string>
+    <string name="notes_content">lorem ipsum dol amet is a long long text that i dont know what\'s the meaning of it and yeah thats all</string>
+    <string name="noteDate">Date</string>
+    <string name="dateInput">October 2, 2023</string>
+    <string name="noteAlarm">Alarm</string>
+    <string name="alarmInput">21:00 - 22:00</string>
+    <string name="notesTextInput">lorem ipsum menggeming waw ini text panjang banget</string>
+</resources>

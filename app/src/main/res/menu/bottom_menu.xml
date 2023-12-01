@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="Test"/>
+
+    <item
+        android:id="@+id/shorts"
+        android:title="Test"
+        />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/subscriptions"
+        android:title="Test"/>
+    <item
+        android:id="@+id/library"
+        android:title="Test"/>
+
+</menu>
