@@ -20,8 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <!-- Guideline for positioning textView2 in the middle -->
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

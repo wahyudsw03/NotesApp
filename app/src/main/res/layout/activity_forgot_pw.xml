@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondaryColor"
-    tools:context=".user.RegisterActivity">
+    tools:context=".user.ForgotPwActivity">
 
     <TextView
         android:id="@+id/title"
@@ -24,7 +24,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         app:cardCornerRadius="16dp"
@@ -37,7 +37,7 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/regEmail"
+                android:id="@+id/userEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -56,48 +56,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/reg"
+                android:text="@string/chgPassword"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/regPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:ems="10"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="@+id/regEmail"
-                app:layout_constraintStart_toStartOf="@+id/regEmail"
-                app:layout_constraintTop_toBottomOf="@+id/regEmail" />
-
             <Button
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnNewPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/reg"
+                android:text="@string/chgPassword"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/regPassword"
-                app:layout_constraintStart_toStartOf="@+id/regPassword"
-                app:layout_constraintTop_toBottomOf="@+id/regPassword" />
+                app:layout_constraintEnd_toEndOf="@+id/userEmail"
+                app:layout_constraintStart_toStartOf="@+id/userEmail"
+                app:layout_constraintTop_toBottomOf="@+id/userEmail" />
 
             <Button
-                android:id="@+id/btnAlrHaveAnAccount"
+                android:id="@+id/btnBack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/alrHvAcc"
+                android:text="@string/back"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/btnRegister"
-                app:layout_constraintStart_toStartOf="@+id/btnRegister"
-                app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+                app:layout_constraintEnd_toEndOf="@+id/btnNewPassword"
+                app:layout_constraintStart_toStartOf="@+id/btnNewPassword"
+                app:layout_constraintTop_toBottomOf="@+id/btnNewPassword" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

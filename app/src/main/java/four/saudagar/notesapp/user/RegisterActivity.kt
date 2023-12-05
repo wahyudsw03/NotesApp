@@ -7,7 +7,6 @@ import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
 import four.saudagar.notesapp.MainActivity
 import four.saudagar.notesapp.R
@@ -42,7 +41,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             if(password.isEmpty() || password.length < 6) {
-                regPassword.error = "Password needs to be atleast 6 characters"
+                regPassword.error = "Password needs to be at least 6 characters"
                 regPassword.requestFocus()
                 return@setOnClickListener
             }
@@ -63,9 +62,9 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
-                    Intent(this@RegisterActivity, MainActivity::class.java).also {
-                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(it)
+                    Intent(this@RegisterActivity, MainActivity::class.java).also {intent ->
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
                     }
                 } else {
                     Toast.makeText(this, it.exception?.message, Toast.LENGTH_SHORT).show()

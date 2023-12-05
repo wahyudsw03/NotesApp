@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import four.saudagar.notesapp.MainActivity
@@ -28,6 +29,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        val btnForgotPassword = findViewById<TextView>(R.id.btnForgotPassword)
+        btnForgotPassword.setOnClickListener {
+            Intent(this@LoginActivity, ForgotPwActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val loginEmail = findViewById<EditText>(R.id.etEmail)
         val loginPassword = findViewById<EditText>(R.id.etPassword)
@@ -42,13 +50,13 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                loginEmail.error = "Pleas insert a valid Email"
+                loginEmail.error = "Please insert a valid Email"
                 loginEmail.requestFocus()
                 return@setOnClickListener
             }
 
             if(password.isEmpty() || password.length < 6) {
-                loginPassword.error = "Password needs to be atleast 6 characters"
+                loginPassword.error = "Password needs to be at least 6 characters"
                 loginPassword.requestFocus()
                 return@setOnClickListener
             }
