@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NotesApp</string>
+    <string name="app_name">NotesNest</string>
     <string name="notes">Notes</string>
     <string name="logo">Logo</string>
     <string name="notesEmpty">It’s still empty :( Let’s start adding notes by clicking the dates below !</string>
@@ -12,4 +12,23 @@
     <string name="noteAlarm">Alarm</string>
     <string name="alarmInput">21:00 - 22:00</string>
     <string name="notesTextInput">lorem ipsum menggeming waw ini text panjang banget</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="chgPassword">Change Password</string>
+    <string name="back">Back to Login Page</string>
+    <string name="login">Login</string>
+    <string name="fgPassword">Forgot Password?</string>
+    <string name="reg">Register</string>
+    <string name="regButton">Click Here to Register</string>
+    <string name="alrHvAcc">Already Have an Account</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notesnest">NotesNest</string>
+    <string name="navigation_drawer_open">Open\n</string>
+    <string name="navigation_drawer_close">Close\n</string>
 </resources>
