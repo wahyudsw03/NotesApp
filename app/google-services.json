@@ -12,7 +12,20 @@
           "package_name": "four.saudagar.notesapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "653197675387-8tm88ei8leg6upto5dqr6l987gp4tedl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "four.saudagar.notesapp",
+            "certificate_hash": "050fa193936e14d978f72513d989fc7cdd52092b"
+          }
+        },
+        {
+          "client_id": "653197675387-8rgmn4ke8qoh63u06m30u7sjfv6ce4k6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB7jD6PRA3hhsNYIgujQszzq2OCAT3KsnQ"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653197675387-8rgmn4ke8qoh63u06m30u7sjfv6ce4k6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

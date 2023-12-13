@@ -57,5 +57,6 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:2.1.0")
     implementation("commons-io:commons-io:2.6")
     implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
 }
