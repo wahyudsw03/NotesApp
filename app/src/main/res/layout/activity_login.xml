@@ -60,12 +60,4 @@
         app:layout_constraintTop_toBottomOf="@+id/welcomeTitle"
         />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/google"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="448dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,7 @@ class ProfilesActivity : AppCompatActivity() {
     }
 
     private lateinit var imageUri: String
+    private lateinit var btnBack: Button
     private lateinit var etName: EditText
     private lateinit var etEmail: EditText
     private lateinit var icVerified: ImageView
@@ -47,7 +48,13 @@ class ProfilesActivity : AppCompatActivity() {
         icVerified = findViewById(R.id.icVerified)
         icUnverified = findViewById(R.id.icUnverified)
         btnUpdate = findViewById(R.id.btnUpdate)
+        btnBack = findViewById(R.id.btnBack)
 
+        btnBack.setOnClickListener {
+            Intent(this@ProfilesActivity, MainActivity::class.java).also {
+                startActivity(it)
+            }
+        }
 
         val ivProfile = findViewById<CircleImageView>(R.id.ivProfile)
         val user = auth.currentUser

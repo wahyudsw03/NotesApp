@@ -33,4 +33,6 @@
     <string name="navigation_drawer_close">Close\n</string>
     <string name="default_web_client_id">653197675387-8tm88ei8leg6upto5dqr6l987gp4tedl.apps.googleusercontent.com</string>
     <string name="SignInWithGoogle">Login With Google</string>
+    <string name="profile">Profile</string>
+    <string name="backText">Back</string>
 </resources>
