@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -26,12 +27,11 @@ import four.saudagar.notesapp.user.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: AppCompatActivity
-
     private lateinit var auth: FirebaseAuth
-
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var navView: NavigationView
+    private val firestore = FirebaseFirestore.getInstance()
+    private val userId = FirebaseAuth.getInstance().currentUser?.uid
+    private val userDocument = firestore.collection("userProfiles").document(userId!!)
+    val collectionReference = firestore.collection("userProfiles")
 
     lateinit var mGoogleSignInClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +45,17 @@ class MainActivity : AppCompatActivity() {
         val btnProfile = findViewById<CircleImageView>(R.id.btnProfile)
         val user = auth.currentUser
         if(user != null) {
-            if (user.photoUrl != null) {
-                Picasso.get().load(user.photoUrl.toString()).into(btnProfile)
-            } else {
-                Picasso.get().load("https://picsum.photos/id/316/200").into(btnProfile)
-            }
+            userDocument.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        // The document exists, load the profile image
+                        val profileImageUrl = documentSnapshot.getString("profileImageUrl")
+                        Picasso.get().load(profileImageUrl).into(btnProfile)
+                    } else {
+                        // The document doesn't exist, load a default image
+                        Picasso.get().load("https://picsum.photos/id/316/200").into(btnProfile)
+                    }
+                }
         }
 
         btnLogout.setOnClickListener {
@@ -90,6 +96,37 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        val documentName = userId.toString()
+        val documentReference = collectionReference.document(documentName)
+
+        documentReference.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    // Document with the specified name already exists
+                    // You can choose to update the existing document or handle it accordingly
+                    Log.d("Firestore", "Document $documentName already exists!")
+                } else {
+                    // Document with the specified name does not exist, create a new one
+                    val data = hashMapOf(
+                        "profileImageUrl" to "https://picsum.photos/id/316/200"
+                    )
+
+                    documentReference.set(data)
+                        .addOnSuccessListener {
+                            // Document successfully written
+                            Log.d("Firestore", "Document $documentName successfully written!")
+                        }
+                        .addOnFailureListener { e ->
+                            // Handle the case where writing to Firestore fails
+                            Log.w("Firestore", "Error writing document $documentName", e)
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                // Handle the case where checking for document existence fails
+                Log.w("Firestore", "Error checking document existence for $documentName", e)
+            }
 
         // GET DB
         val data = ArrayList<ItemsViewModel>()

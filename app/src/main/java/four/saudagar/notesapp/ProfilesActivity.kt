@@ -15,9 +15,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -38,6 +38,11 @@ class ProfilesActivity : AppCompatActivity() {
     private lateinit var icUnverified: ImageView
     private lateinit var btnUpdate: Button
     private lateinit var auth: FirebaseAuth
+
+    private val firestore = FirebaseFirestore.getInstance()
+    private val userId = FirebaseAuth.getInstance().currentUser?.uid
+    private val userDocument = firestore.collection("userProfiles").document(userId!!)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profiles)
@@ -59,11 +64,17 @@ class ProfilesActivity : AppCompatActivity() {
         val ivProfile = findViewById<CircleImageView>(R.id.ivProfile)
         val user = auth.currentUser
         if(user != null){
-            if(user.photoUrl != null){
-                Picasso.get().load(user.photoUrl.toString()).into(ivProfile)
-            } else {
-                Picasso.get().load("https://picsum.photos/id/316/200").into(ivProfile)
-            }
+            userDocument.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        // The document exists, load the profile image
+                        val profileImageUrl = documentSnapshot.getString("profileImageUrl")
+                        Picasso.get().load(profileImageUrl).into(ivProfile)
+                    } else {
+                        // The document doesn't exist, load a default image
+                        Picasso.get().load("https://picsum.photos/id/316/200").into(ivProfile)
+                    }
+                }
 
             etName.setText(user.displayName)
             etEmail.setText(user.email)
@@ -180,7 +191,17 @@ class ProfilesActivity : AppCompatActivity() {
                 if (uriTask.isSuccessful) {
                     // The image has been uploaded successfully, and uriTask.result contains the download URL
                     val downloadUrl = uriTask.result.toString()
-                    // You can use the downloadUrl as needed (e.g., save it in a database or display it in your app)
+
+                    userDocument.update("profileImageUrl", downloadUrl)
+                        .addOnSuccessListener {
+                            // Update the ImageView with the new image
+                            findViewById<CircleImageView>(R.id.ivProfile)?.setImageBitmap(imageBitmap)
+                        }
+                        .addOnFailureListener { e ->
+                            // Handle the case where updating Firestore fails
+                            Toast.makeText(this, "Failed to update Firestore: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+
                     findViewById<CircleImageView>(R.id.ivProfile)?.setImageBitmap(imageBitmap)
                 } else {
                     // Handle the case where getting the download URL fails
