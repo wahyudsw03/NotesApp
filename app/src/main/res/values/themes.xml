@@ -3,6 +3,7 @@
     <style name="Base.Theme.NotesApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:timePickerStyle">@style/MyTimePickerStyle</item>
     </style>
 
     <style name="Theme.NotesApp" parent="Base.Theme.NotesApp" />
@@ -14,6 +15,10 @@
 
     <style name="Button.White" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@android:color/white</item>
+    </style>
+
+    <style name="MyTimePickerStyle" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:timePickerMode">spinner</item>
     </style>
 
 </resources>

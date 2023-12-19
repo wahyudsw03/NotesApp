@@ -41,7 +41,10 @@
             android:name=".user.ForgotPwActivity"
             android:exported="false" />
         <activity
-            android:name=".createNotes"
+            android:name=".CreateNotes"
+            android:exported="false" />
+        <activity
+            android:name=".DetailNotes"
             android:exported="false" />
         <activity
             android:name=".ProfilesActivity"
