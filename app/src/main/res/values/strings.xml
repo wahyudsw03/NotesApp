@@ -35,4 +35,5 @@
     <string name="SignInWithGoogle">Login With Google</string>
     <string name="profile">Profile</string>
     <string name="backText">Back</string>
+    <string name="delete">🗑️</string>
 </resources>

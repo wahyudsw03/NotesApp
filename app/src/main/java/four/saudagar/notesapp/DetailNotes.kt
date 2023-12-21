@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +48,12 @@ class DetailNotes : AppCompatActivity() {
 
             val submitNoteButton = findViewById<Button>(R.id.submitNoteButton)
             val btnBackNote = findViewById<Button>(R.id.btnBackNote)
+            val btnDeleteNote = findViewById<ImageView>(R.id.btnDeleteNote)
+
+            btnDeleteNote.setOnClickListener {
+                val noteId = selectedNote.id
+                deleteNote(noteId)
+            }
 
             // sets the layout to selected note data's and edit mode
             inputTitle.setText(selectedNote.title)
@@ -154,6 +161,18 @@ class DetailNotes : AppCompatActivity() {
             .document(id).set(note)
             .addOnSuccessListener { documentReference ->
                 Log.d("Firestore: ", "DocumentSnapshot edited with ID: ${id}")
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Something Went Wrong, Please Try Again in a While", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun deleteNote(id: String){
+        db.collection("notes")
+            .document(id).delete()
+            .addOnSuccessListener { documentReference ->
+                Log.d("Firestore: ", "Document ${id} is deleted")
                 finish()
             }
             .addOnFailureListener { e ->

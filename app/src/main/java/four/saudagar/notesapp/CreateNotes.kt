@@ -5,8 +5,10 @@ import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.Firebase
@@ -41,6 +43,8 @@ class CreateNotes : AppCompatActivity() {
                 " - " + SimpleDateFormat("HH:mm").format(endTime.time)
         val submitNoteButton = findViewById<Button>(R.id.submitNoteButton)
         val btnBackNote = findViewById<Button>(R.id.btnBackNote)
+        val btnDelete = findViewById<ImageView>(R.id.btnDeleteNote)
+        btnDelete.visibility = View.INVISIBLE
 
 //        DATE
         val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
